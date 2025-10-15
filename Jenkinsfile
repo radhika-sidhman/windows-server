@@ -10,25 +10,26 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building project...'
-                bat 'dotnet build' // or any Windows command
+                echo '🧱 Building .NET project...'
+                bat 'dotnet build HelloApp/HelloApp.csproj'
             }
         }
 
-        stage('Deploy') {
+        stage('Run') {
             steps {
-                echo 'Deploying new version of HTML...'
-                bat 'xcopy /Y index.html C:\\inetpub\\wwwroot\\' // example for IIS
+                echo '▶️ Running application...'
+                bat 'dotnet run --project HelloApp/HelloApp.csproj'
             }
         }
     }
 
     post {
+        success {
+            echo '✅ Build and Run completed successfully!'
+        }
         failure {
             echo '❌ Build failed!'
         }
-        success {
-            echo '✅ Build succeeded!'
-        }
     }
 }
+
