@@ -10,24 +10,25 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "Building project..."
+                echo 'Building project...'
+                bat 'dotnet build' // or any Windows command
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying new version of HTML..."
-                sh 'ls -l'
+                echo 'Deploying new version of HTML...'
+                bat 'xcopy /Y index.html C:\\inetpub\\wwwroot\\' // example for IIS
             }
         }
     }
 
     post {
-        success {
-            echo "✅ Build succeeded!"
-        }
         failure {
-            echo "❌ Build failed!"
+            echo '❌ Build failed!'
+        }
+        success {
+            echo '✅ Build succeeded!'
         }
     }
 }
