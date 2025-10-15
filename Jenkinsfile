@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOTNET_PATH = "C:\\Program Files\\dotnet\\dotnet.exe" // Optional: if dotnet is not in PATH
+        // Optional: full path to dotnet if not in PATH
+        DOTNET_PATH = "C:\\Program Files\\dotnet\\dotnet.exe"
     }
 
     stages {
@@ -12,14 +13,14 @@ pipeline {
                 echo '📥 Checking out source code from Git...'
                 git branch: 'main',
                     url: 'https://github.com/yuvrajahire1/windows-server.git',
-                    credentialsId: 'windows' // replace with your Jenkins credential ID if needed
+                    credentialsId: 'windows' // replace with your Jenkins Git credential ID
             }
         }
 
         stage('Build') {
             steps {
                 echo '🛠 Building .NET project...'
-                // Build the project
+                // Build the HelloApp.csproj
                 bat '"%DOTNET_PATH%" build HelloApp.csproj'
             }
         }
@@ -27,10 +28,11 @@ pipeline {
         stage('Run') {
             steps {
                 echo '🚀 Running .NET project...'
-                // Run the project
+                // Run the HelloApp.csproj
                 bat '"%DOTNET_PATH%" run --project HelloApp.csproj'
             }
         }
+
     }
 
     post {
@@ -45,4 +47,5 @@ pipeline {
         }
     }
 }
+
 
