@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo '📥 Checking out source code from Git...'
                 git branch: 'main',
-                    url: 'https://github.com/yuvrajahire1/windows-server.git',
+                    url: 'https://github.com/radhika-sidhman/windows-server.git',
                     credentialsId: 'windows' // replace with your Jenkins Git credential ID
             }
         }
