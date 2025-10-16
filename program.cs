@@ -6,7 +6,7 @@ namespace HelloApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello from Jenkins CI/CD Pipeline! [Webhook done ok run this]");
+            Console.WriteLine("Hello from Jenkins CI/CD Pipeline! [Webhook done ok run this and deploy]");
             Console.WriteLine("Current Time: " + DateTime.Now);
         }
     }
